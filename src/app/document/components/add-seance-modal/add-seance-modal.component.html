@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-between">
+  <h2 mat-dialog-title>{{"Ajouter un seance"}}</h2>
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>
+
+<mat-dialog-content class="mat-typography"  >
+
+  <form [formGroup]="seanceForm">
+    <div class="form-group col-12">
+      <label for="numero">numéro de séance :</label>
+      <select id="numero" formControlName="seanceTitle" class="form-select" aria-label="selectioner une numéro">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="form-group col-3">
+        <label for="dateOfCommission"  class="sr-only">Date et l'heure d'ouverture </label>
+        <input type="text" formControlName="dateOfCommission" class="form-control" id="dateOfCommission" placeholder="date et l'heure d'ouverture :">
+      </div>
+      <div class="form-group col-3">
+        <label for="decisionNumber"  class="sr-only">Numéro de decision: </label>
+        <input type="text" formControlName="decisionNumber" class="form-control" id="decisionNumber" placeholder="Numéro de la decision :">
+      </div>
+      <div class="form-group col-2">
+        <input type="text" formControlName="decisionDate" class="form-control" id="decisionDate" placeholder="Date de decision:">
+      </div>
+      <div class="form-group col-2">
+        <label for="dateOfPortail"  class="sr-only">Date de Portail: </label>
+        <input type="text" formControlName="dateOfPortail" class="form-control" id="dateOfPortail" placeholder="Date de Portail:">
+      </div>
+      <div class="form-group col-2">
+        <label for="hourOfPortail"  class="sr-only">heure de Portail: </label>
+        <input type="text" formControlName="hourOfPortail" class="form-control" id="hourOfPortail" placeholder="Heure de Portail:">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-3">
+        <input type="text" formControlName="dateDelai" class="form-control" id="dateDelai" placeholder="date de delai :">
+      </div>
+      <div class="form-group col-2">
+        <input type="text" formControlName="hourDelai" class="form-control" id="hourDelai" placeholder="Heure de  delai :">
+      </div>
+      <div class="form-group col-2">
+        <input type="text" formControlName="dateSuspend" class="form-control" id="dateSuspend" placeholder="date de Suspend :">
+      </div>
+      <div class="form-group col-2">
+        <input type="text" formControlName="hourSuspend" class="form-control" id="hourSuspend" placeholder="Heure de  Suspend :">
+      </div>
+        <div class="form-group col-3">
+          <input type="text" formControlName="dateFaitLe" class="form-control" id="dateFaitLe" placeholder="Faite LE :">
+        </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-3">
+        <input type="text" formControlName="letterNumber" class="form-control" id="letterNumber" placeholder="Numéro de  Lettre :">
+      </div>
+      <div class="form-group col-3">
+        <input type="text" formControlName="letterDate" class="form-control" id="letterDate" placeholder="Date de  Lettre :">
+      </div>
+      <div class="form-group col-3">
+        <input type="text" formControlName="dateOfReception" class="form-control" id="dateOfReception" placeholder="Date de Reception :">
+      </div>
+      <div class="form-group col-3">
+        <input type="text" formControlName="hourOfReception" class="form-control" id="hourOfReception" placeholder="Heure de Reception :">
+      </div>
+    </div>
+
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [checked]="getIsHasCommissionPart()"  formControlName="isHasCommission" [(ngModel)]="isHasCommissionPart" (change)="setIsHasCommissionPart()" style="width: 20px; height: 20px;" id="commissionChecker">
+      <label class="form-check-label"   for="commissionChecker">
+        Ajouter la parties de Commission
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" [checked]="getIsHasJournalPart()" type="checkbox" formControlName="isHasJournal" [(ngModel)]="isHasJournalPart" (change)="setIsHasJournalPart()" style="width: 20px; height: 20px;" id="journalChecker">
+
+      <label class="form-check-label" for="journalChecker">
+        Ajouter la parties de Journal
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" formControlName="isHasCommission" [checked]="getIsHasOfferPart()" [(ngModel)]="isHasOfferPart" (change)="setIsHasOfferPart()" style="width: 20px; height: 20px;" id="offerChecker">
+      <label class="form-check-label" for="offerChecker">
+        Ajouter la parties des Offers
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" formControlName="isHasReception" [checked]="getIsHasReception()" [(ngModel)]="isHasReception" (change)="setIsHasReception()" style="width: 20px; height: 20px;" id="receptionChecker">
+      <label class="form-check-label" for="receptionChecker">
+        Ajouter la Reception
+      </label>
+    </div>
+
+    <app-commission-part class="box" *ngIf="getIsHasCommissionPart()"></app-commission-part>
+
+    <app-journal-part class="box" *ngIf="getIsHasJournalPart()"></app-journal-part>
+
+    <app-offer-part class="box" *ngIf="getIsHasOfferPart()"></app-offer-part>
+
+    <app-reception-part class="box" *ngIf="getIsHasReception()"></app-reception-part>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true"  (click)="onSubmit()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

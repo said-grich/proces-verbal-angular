@@ -1,0 +1,42 @@
+<h2 style="text-decoration: underline;">{{title}}</h2>
+<form class="form-inline" [formGroup]="journalForm">
+  <div class="row">
+
+    <div class="form-group mx-sm-3 mb-2 col-3">
+      <label for="name"  class="sr-only">Nom : </label>
+      <input type="text" formControlName="journalName" class="form-control" id="name" placeholder="Nom">
+    </div>
+    <div class="form-group mx-sm-3 mb-2 col-2">
+      <label for="number" class="sr-only">Numéro :</label>
+      <input type="text" formControlName="journalNumber" class="form-control" id="number" placeholder="Numéro">
+    </div>
+    <div class="form-group mx-sm-3 mb-2 col-2">
+      <label for="date" class="sr-only">La date :</label>
+      <input type="text" formControlName="journalDate" class="form-control" id="date" placeholder="Date">
+    </div>
+    <div class="form-group mx-sm-3 mb-2 col-2">
+      <label for="page" class="sr-only">Page :</label>
+      <input type="text" formControlName="journalPage" class="form-control" id="page" placeholder="Page">
+    </div>
+    <button type="submit" (click)="addJournal()" class="btn btn-primary  col-1">+</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Numéro</th>
+    <th scope="col">Date</th>
+    <th scope="col">Page</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of journalist()">
+    <td>{{row.journalName}}</td>
+    <td>{{row.journalNumber}}</td>
+    <td>{{row.journalDate}}</td>
+    <td>{{row.journalPage}}</td>
+    <td><button (click)="delete(row)" class="btn btn-outline-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasbhoard</title>
+  <link rel="shortcut icon" href="img/favico.png" type="image/x-icon">
+  <!-- Font Google (Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/Bootstrap/bootstrap.min.css">
+  <script src="assets/assets/Jquery/jquery-3.5.1.slim.min.js"></script>
+  <script src="assets/assets/Jquery/popper.min.js"></script>
+  <script src="assets/assets/Bootstrap/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="mat-typography">
+
+<app-root></app-root>
+<!-- Show Menu mobile -->
+<script>
+  $(".nav-toggle").click(function(){
+    $(".sidebar").addClass("show");
+    $(".overlay-common").addClass("show");
+  });
+
+  $(".overlay-common").click(function(){
+    $(".sidebar").removeClass("show");
+    $(".overlay-common").removeClass("show");
+  });
+
+</script>
+</body>
+</html>

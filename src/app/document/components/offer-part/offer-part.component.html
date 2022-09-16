@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between">
+  <h2 style="text-decoration: underline;">{{title}}</h2>
+  <button class="btn btn-primary" (click)="openDialog()">Ajouter</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Address</th>
+    <th scope="col">Online</th>
+    <th scope="col">Reserve</th>
+    <th scope="col">Montant</th>
+    <th scope="col">Majoration</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of OffersList()">
+    <td>{{row.name}}</td>
+    <td>{{row.address}}</td>
+    <td>{{row.isOnline}}</td>
+    <td>{{row.reserve}}</td>
+    <td>{{row.montant}}</td>
+    <td>{{row.majoration}}</td>
+    <td><button (click)="delete(row)" class="btn btn-outline-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+    <td><button (click)="edite(row)" class="btn btn-outline-danger"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+  </tr>
+  </tbody>
+</table>

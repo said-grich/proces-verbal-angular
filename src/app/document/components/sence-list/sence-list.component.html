@@ -1,0 +1,24 @@
+<div class="box-form" style="padding: 30px ; margin-top: 20px">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Numéro</th>
+      <th scope="col">Commission member</th>
+      <th scope="col">NOMBRE des journals</th>
+      <th scope="col">NOMBRE des Offers</th>
+      <th scope="col">Reception Commission member</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of getSeanceList()">
+     <td>{{row.seanceTitle}}</td>
+     <td>{{row.commissionMember.length}}</td>
+     <td>{{row.journalDtoList.length}}</td>
+     <td>{{row.offerDtoList.length}}</td>
+     <td>{{row.commissionMemberFinal.length}}</td>
+     <td><button (click)="edite(row)" class="btn btn-main"><i class="fa fa-pencil"></i></button></td>
+     <td><button (click)="delete(row)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

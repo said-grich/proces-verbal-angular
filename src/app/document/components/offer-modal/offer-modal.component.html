@@ -1,0 +1,71 @@
+<h2 mat-dialog-title >Ajouter  Offer</h2>
+<mat-dialog-content class="mat-typography">
+<form class="container d-flex flex-column" [formGroup]="offerForm">
+  <div class="row">
+    <div class="form-group col-6">
+      <label for="name"  class="sr-only">Nom : </label>
+      <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nom :">
+    </div>
+    <div class="form-group col-6">
+      <label for="name"  class="sr-only">Address : </label>
+      <input type="text" formControlName="address" class="form-control" id="address" placeholder="Address :">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <input type="checkbox" formControlName="isOnline" class="custom-control-input" id="isOnline">
+      <label class="custom-control-label" for="isOnline">Online</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-5">
+      <input type="checkbox" formControlName="isRejectedBeforeMaj" class="custom-control-input" id="isRejectedBeforeMaj">
+      <label class="custom-control-label" for="isRejectedBeforeMaj">Refuser avent Majoration</label>
+    </div>
+
+    <div class="form-group col-6">
+      <label for="motifBeforeMaj"  class="sr-only">Motif avent Majoration: </label>
+      <input type="text" formControlName="motifBeforeMaj" class="form-control" id="motifBeforeMaj" placeholder="Motif :">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-5">
+      <input type="checkbox" formControlName="isRejectedAfterMaj" class="custom-control-input" id="isRejectedAfterMaj">
+      <label class="custom-control-label" for="isRejectedAfterMaj">Refuser apres Majoration</label>
+    </div>
+    <div class="form-group col-6">
+      <label for="motifAfterMaj"  class="sr-only">Motif apres Majoration: </label>
+      <input type="text" formControlName="motifAfterMaj" class="form-control" id="motifAfterMaj" placeholder="Motif :">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-5">
+      <input type="checkbox" formControlName="isWithReserve" class="custom-control-input" id="isWithReserve">
+      <label class="custom-control-label" for="isWithReserve">Avec Reserve</label>
+    </div>
+    <div class="form-group col-6">
+      <label for="reserve"  class="sr-only">Reserve: </label>
+      <input type="text" formControlName="motifAfterMaj" class="form-control" id="reserve" placeholder="Reserve :">
+    </div>
+  </div>
+  <div class="row">
+  <div class="form-group col-6">
+    <label for="montant"  class="sr-only">Montant : </label>
+    <input type="text" formControlName="montant" class="form-control" id="montant" placeholder="Montant :">
+  </div>
+  <div class="form-group col-6">
+    <label for="majoration"  class="sr-only">Address : </label>
+    <input type="text" formControlName="majoration" class="form-control" id="majoration" placeholder="Majoration :">
+  </div>
+  </div>
+
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="addOffer()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
