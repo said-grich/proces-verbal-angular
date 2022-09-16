@@ -8,6 +8,7 @@ import {Document} from "../models/document.model";
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { saveAs } from 'file-saver';
+import {environment} from "../../../environments/environment";
 
 
 @Injectable({
@@ -29,12 +30,24 @@ export class DocumentService {
 
   private _currentOffer: Offer;
   private _currentSeance: Seance;
+  private _listOfDocument:Array<string>;
   constructor(private  http:HttpClient,private _snackBar: MatSnackBar) {
 
     this.commissionMember=[...Utils.FIXE_MEMBER];
 
   }
 
+
+  get listOfDocument(): Array<string> {
+    if(this._listOfDocument==null){
+      this._listOfDocument=new Array<string>();
+    }
+    return this._listOfDocument;
+  }
+
+  set listOfDocument(value: Array<string>) {
+    this._listOfDocument = value;
+  }
 
   get isHasReception(): boolean {
     return this._isHasReception;
@@ -231,25 +244,30 @@ export class DocumentService {
 }
 
   creatNewDocument(document:Document){
-
     document.seances=this.seanceList;
-
-    this.http.post("http://localhost:8091/api/document/create-new-doc/",document,{
-      responseType: 'blob'
-    }).subscribe(
-      blob => saveAs(blob,document.title+".docx"),
-      data =>{
-        console.log(data);
-      }
-    );
-
+    document.title=document.objet;
+    if(document.seances.length >= 1){
+      this.http.post(environment.baseUrl+"document/create-new-doc/",document,{
+        responseType: 'blob'
+      }).subscribe(
+        blob =>{ saveAs(blob,document.title+".docx")
+        this.openSnackBarSuccess("document est créé avec succès");
+        },
+        error => {
+          console.log(error)
+          this.openSnackBarError("erreur de connexion avec serveur svp contacter votre administrateur");
+        }
+      );
+    }else{
+      this.openSnackBarError("s'il vous plaît ajouter une seance");
+    }
   }
 
 
 
   openSnackBarError(msg:string) {
     this._snackBar.open(msg, '', {
-      duration:1000,
+      duration:3000,
       horizontalPosition: 'right',
       verticalPosition: 'bottom',
       panelClass:['error-snackbar']
@@ -257,12 +275,37 @@ export class DocumentService {
   }
   openSnackBarSuccess(msg:string) {
     this._snackBar.open(msg, '', {
-      duration:1000,
+      duration:3000,
       horizontalPosition: 'right',
       verticalPosition: 'bottom',
       panelClass:['success-snackbar']
     });
   }
 
+  findAll(){
+    this.http.get<Array<string>>(environment.baseUrl+"document/").subscribe(
+      data=>{
+        this._listOfDocument=data;
+      }
+      ,
+      error => {
+        this.openSnackBarError("erreur de connexion avec serveur svp contacter votre administrateur");
+      }
+    )
+  }
+
+  download(row:string){
+    this.http.get(environment.baseUrl+"document/download/"+row,{
+      responseType: 'blob'
+    }).subscribe(
+      blob =>{ saveAs(blob,row+".docx")
+        this.openSnackBarSuccess("document est télécharger avec succès");
+      },
+
+      error => {
+        this.openSnackBarError("erreur de connexion avec serveur svp contacter votre administrateur");
+      }
+    )
+  }
 
 }

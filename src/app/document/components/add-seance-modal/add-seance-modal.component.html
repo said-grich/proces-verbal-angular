@@ -1,6 +1,5 @@
 <div class="d-flex justify-content-between">
   <h2 mat-dialog-title>{{"Ajouter un seance"}}</h2>
-  <button mat-button mat-dialog-close>Cancel</button>
 </div>
 
 <mat-dialog-content class="mat-typography"  >
@@ -113,6 +112,7 @@
 
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true"  (click)="onSubmit()" cdkFocusInitial>Save</button>
+<mat-dialog-actions class="d-flex justify-content-between align-items-center" align="end">
+  <button class="btn btn-outline-dark" mat-dialog-close>Annuler</button>
+  <button class="btn btn-dark"    [mat-dialog-close]="true"  (click)="onSubmit()" cdkFocusInitial>Valider</button>
 </mat-dialog-actions>

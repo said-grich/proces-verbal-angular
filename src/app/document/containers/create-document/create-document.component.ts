@@ -23,14 +23,26 @@ export class CreateDocumentComponent implements OnInit {
     this.documentService.setAllCheckBoxFalse();
     this.documentService.initSeanceForm();
     this.dialog.open(AddSeanceModalComponent,{
-     minHeight:'80vh',
-     width: '90%'
-   });
+      minWidth: '90vw',
+      minHeight: '90vh',
+      disableClose: true
+
+    });
   }
 
   createDoc(){
-    this.documentService.creatNewDocument(this.documentForm.value);
-
+    if(this.documentForm.controls['objet'].hasError('required')){
+      this.helper.openSnackBarError("Objet du document est manquant")
+    }
+    else if(this.documentForm.controls['documentNumber'].hasError('required')){
+      this.helper.openSnackBarError("numéro du document est manquant")
+    }
+    else if(this.documentForm.controls['montant'].hasError('required')) {
+      this.helper.openSnackBarError("montant du document est manquant");
+    }
+   else {
+      this.documentService.creatNewDocument(this.documentForm.value);
+    }
   }
 
 

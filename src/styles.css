@@ -24,10 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.mat-dialog-content{
-  display: contents;
 
-}
 
 :root {
   /*   color variables */
@@ -36,7 +33,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --clr-primary-dark: #039d69;
   --clr-gray100: #f0f7f8;
   --clr-gray200: #cfd8dc;
-
   /*   border radius */
   --radius: 0.2rem;
 }

@@ -8,6 +8,10 @@ const routes: Routes = [
     path:"add-new-document",component:CreateDocumentComponent
   },{
     path:"list-of-documents",component:ListOfDocumentsComponent
+  },
+  {
+    path:"**",
+    redirectTo:"/add-new-document"
   }
 ];
 

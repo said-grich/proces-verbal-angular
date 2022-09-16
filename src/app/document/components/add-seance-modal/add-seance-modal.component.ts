@@ -46,8 +46,12 @@ export class AddSeanceModalComponent implements OnInit {
     return this.documentService.isHasReception=this.isHasReception;
   }
 
-  onSubmit(){
-    this.documentService.createNewSeance(this.seanceForm.value);
+  onSubmit() {
+    if (this.seanceForm.controls['seanceTitle'].hasError('required')) {
+      this.helper.openSnackBarError("name est manquant")
+    } else {
+      this.documentService.createNewSeance(this.seanceForm.value);
+    }
   }
 
 }
